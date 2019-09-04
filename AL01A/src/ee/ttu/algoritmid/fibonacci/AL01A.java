@@ -11,8 +11,8 @@ public class AL01A {
 
 
     public static String iterativeF(long n) {
-        if (n <= 1) return "1";
-        else return iterativeF(n-1) + iterativeF(n-2);
+        if (n <= 1) return ""+String.valueOf(n);
+        else return ""+(iterativeF(n-1) + iterativeF(n-2));
         //return "";
     }
 
