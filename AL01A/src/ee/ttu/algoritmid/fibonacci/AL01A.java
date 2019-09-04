@@ -9,14 +9,21 @@ public class AL01A {
      * @return The n-th number in Fibonacci series.
      */
 
-
-    public static String iterativeF(long n) {
-        if (n <= 1) return ""+String.valueOf(n);
-        else return ""+(iterativeF(n-1) + iterativeF(n-2));
-        //return "";
+    static String iterativeF(long n)
+    {
+        long a = 0, b = 1, c;
+        if (n == 0)
+            return ""+a;
+        for (long i = 2; i <= n; i++)
+        {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return ""+b;
     }
 
-    public static void main(String args[])
+    public static void main (String args[])
     {
         long n = 9;
         System.out.println(iterativeF(n));
