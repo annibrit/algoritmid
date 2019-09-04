@@ -8,8 +8,19 @@ public class AL01A {
      * @param n The number of the sequence to compute.
      * @return The n-th number in Fibonacci series.
      */
-    public String iterativeF(int n) {
-        // TODO
-        return "";
+
+
+    public static String iterativeF(long n) {
+        if (n <= 1) return "1";
+        else return iterativeF(n-1) + iterativeF(n-2);
+        //return "";
     }
+
+    public static void main(String args[])
+    {
+        long n = 9;
+        System.out.println(iterativeF(n));
+    }
+
+
 }
