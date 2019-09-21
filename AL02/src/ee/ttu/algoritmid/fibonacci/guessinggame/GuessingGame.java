@@ -1,5 +1,8 @@
 package ee.ttu.algoritmid.fibonacci.guessinggame;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class GuessingGame {
 
     Oracle oracle;
@@ -13,8 +16,26 @@ public class GuessingGame {
      * @return the name of the city.
      */
     public String play(City[] cityArray) {
-        // TODO
-        return "";
+
+        // TODO - sorteerida array, seejärel binary otsing
+        List<City> cities = Arrays.asList(cityArray);
+        cities.sort((city1, city2) -> city1.getPopulation() - city2.getPopulation());
+
+        String correctCity = "";
+
+        while (correctCity.length() == 0) {
+            int middleValue = (cities.size()/2) + (cities.size() % 2);
+            String answer = this.oracle.isIt(cities.get(middleValue));
+            if (answer == "correct!" || cities.size()==1) {
+                correctCity = cities.get(middleValue).getName();
+            } else if (answer == "higher population") {
+                cities = cities.subList(middleValue, cities.size());
+            } else if (answer == "lower population") {
+                cities = cities.subList(0, middleValue);
+            }
+        }
+
+        return correctCity;
     }
     public static void main(String[] args) {
 
@@ -30,7 +51,6 @@ public class GuessingGame {
                 new City("Giza", 4239988),
                 new City("Yokohama", 3726167)
         };
-
         GuessingGame guessingGame = new GuessingGame(new Oracle(listOfCities[0])); //dehli
         System.out.println(guessingGame.play(listOfCities)); //dehli
 
