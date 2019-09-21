@@ -1,4 +1,4 @@
-package ee.ttu.algoritmid.fibonacci.guessinggame;
+package ee.ttu.algoritmid.guessinggame;
 
 public class City {
 
