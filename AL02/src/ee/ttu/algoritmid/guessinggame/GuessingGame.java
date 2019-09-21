@@ -24,8 +24,11 @@ public class GuessingGame {
 
         while (correctCity.length() == 0) {
 
-            //int middleValue = (cities.size()/2) + (cities.size() % 2);
-            int middleValue = ((cities.size()+1)/2)+1;
+            int middleValue;
+            if (cities.size()==1){middleValue=1;}
+            else
+            {middleValue = (cities.size()/2) + (cities.size() % 2);}
+
 
             String answer = this.oracle.isIt(cities.get(middleValue));
             if (answer == "correct!" || cities.size()==1) {
