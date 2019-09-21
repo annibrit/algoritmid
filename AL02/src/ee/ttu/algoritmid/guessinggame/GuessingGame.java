@@ -17,14 +17,16 @@ public class GuessingGame {
      */
     public String play(City[] cityArray) {
 
-        // TODO - sorteerida array, seejärel binary otsing
         List<City> cities = Arrays.asList(cityArray);
         cities.sort((city1, city2) -> city1.getPopulation() - city2.getPopulation());
 
         String correctCity = "";
 
         while (correctCity.length() == 0) {
-            int middleValue = (cities.size()/2) + (cities.size() % 2);
+
+            //int middleValue = (cities.size()/2) + (cities.size() % 2);
+            int middleValue = ((cities.size()+1)/2)-1;
+
             String answer = this.oracle.isIt(cities.get(middleValue));
             if (answer == "correct!" || cities.size()==1) {
                 correctCity = cities.get(middleValue).getName();
@@ -51,7 +53,7 @@ public class GuessingGame {
                 new City("Giza", 4239988),
                 new City("Yokohama", 3726167)
         };
-        GuessingGame guessingGame = new GuessingGame(new Oracle(listOfCities[0])); //dehli
+        GuessingGame guessingGame = new GuessingGame(new Oracle(listOfCities[4])); //dehli
         System.out.println(guessingGame.play(listOfCities)); //dehli
 
     }
