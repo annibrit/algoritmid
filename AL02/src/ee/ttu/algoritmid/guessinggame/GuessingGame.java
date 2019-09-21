@@ -25,7 +25,7 @@ public class GuessingGame {
         while (correctCity.length() == 0) {
 
             int middleValue;
-            if (cities.size()==1){middleValue=1;}
+            if (cities.size()==1){middleValue=0;}
             else
             {middleValue = (cities.size()/2) + (cities.size() % 2);}
 
@@ -55,8 +55,9 @@ public class GuessingGame {
                 new City("Tokyo", 13513734),
                 new City("Giza", 4239988),
                 new City("Yokohama", 3726167)
+
         };
-        GuessingGame guessingGame = new GuessingGame(new Oracle(listOfCities[4])); //dehli
+        GuessingGame guessingGame = new GuessingGame(new Oracle(listOfCities[0])); //dehli
         System.out.println(guessingGame.play(listOfCities)); //dehli
 
     }
