@@ -1,6 +1,7 @@
 package ee.ttu.algoritmid.popularity;
 
 import java.awt.*;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Popularity {
@@ -44,8 +45,23 @@ public class Popularity {
     /**
      * @return the number of occurrennces of the most popular point
      */
+
+
     int maxPopularity() {
-        return 0;
+
+        //tee array kõikidest pointidest nende countidega
+
+    //int mostPopularpoint = Collections.max((paned siia selle array sisse));
+    //return mostPopularpoint;
+
+
+        HashMap<Point, Integer> counts = new HashMap<Point, Integer>();
+        for (Point c : h.values()) {
+            int value = counts.get(c) == null ? 0 : counts.get(c);
+            counts.put(c, value + 1);
+        }
+
+        return Collections.max(counts.values());
     }
 
 }
