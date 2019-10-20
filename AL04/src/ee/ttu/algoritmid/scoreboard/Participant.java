@@ -1,6 +1,6 @@
 package ee.ttu.algoritmid.scoreboard;
 
-public class Participant {
+public class Participant  {
     private int id;
     private String name;
     private int time;

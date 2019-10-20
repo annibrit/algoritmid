@@ -1,13 +1,27 @@
 package ee.ttu.algoritmid.scoreboard;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.TreeSet;
 
-public class ScoreBoard {
+public class ScoreBoard implements Comparator<Participant> {
 
     Participant participant;
 
     public ScoreBoard (){}
+
+
+    public int compare(Participant o1, Participant o2) {
+        if (new Integer(o1.getTime()).compareTo(new Integer(o2.getTime())) < 0)
+
+            return -1;
+
+        else if (new Integer(o1.getTime()).compareTo(new Integer(o2.getTime())) > 0)
+
+            return 1;
+
+        else return 0;
+    }
 
     public ScoreBoard(Participant participant) {
         this.participant = participant;
@@ -21,7 +35,7 @@ public class ScoreBoard {
 
         participants.add(participant);
 
-        /*TreeSet<Participant> scoreboard = new TreeSet<>(new Comparator <Participant>() {
+        TreeSet<Participant> scoreboard = new TreeSet<Participant>(new Comparator <Participant>() {
             @Override
             public int compare(Participant o1, Participant o2) {
                 if (new Integer(o1.getTime()).compareTo(new Integer(o2.getTime())) < 0)
@@ -34,7 +48,7 @@ public class ScoreBoard {
 
                 else return 0;
             }
-        });*/
+        });
 
     }
 
