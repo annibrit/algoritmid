@@ -8,6 +8,8 @@ public class ScoreBoard {
 
     Participant participant;
 
+    public ScoreBoard (){}
+
     public ScoreBoard(Participant participant) {
         this.participant = participant;
     }
@@ -32,10 +34,6 @@ public class ScoreBoard {
         }
 
     });
-
-
-    //TreeSet t = new TreeSet(Comparator comp);
-    //TreeSet<Participant> participantsDesc = (TreeSet<Participant>)participants.descendingSet(participant.getTime());
 
 
     /**
