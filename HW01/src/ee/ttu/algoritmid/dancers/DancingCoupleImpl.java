@@ -20,4 +20,12 @@ public class DancingCoupleImpl implements DancingCouple {
     public Dancer getFemaleDancer() {
         return femaleDancer;
     }
+
+    @Override
+    public String toString() {
+        return "DancingCoupleImpl{" +
+                "femaleDancer=" + femaleDancer +
+                ", maleDancer=" + maleDancer +
+                '}';
+    }
 }

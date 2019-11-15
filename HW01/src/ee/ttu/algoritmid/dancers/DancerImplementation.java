@@ -1,12 +1,12 @@
 package ee.ttu.algoritmid.dancers;
 
-public class DancerImpl implements Dancer {
+public class DancerImplementation implements Dancer {
 
     String name;
     Gender gender;
     int height;
 
-    public DancerImpl(String name, Gender gender, int height) {
+    public DancerImplementation(String name, Gender gender, int height) {
         this.name = name;
         this.gender = gender;
         this.height = height;
@@ -25,5 +25,14 @@ public class DancerImpl implements Dancer {
     @Override
     public int getHeight() {
         return height;
+    }
+
+    @Override
+    public String toString() {
+        return "DancerImplementation{" +
+                "name='" + name + '\'' +
+                ", gender=" + gender +
+                ", height=" + height +
+                '}';
     }
 }

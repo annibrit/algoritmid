@@ -1,35 +1,96 @@
 package ee.ttu.algoritmid.dancers;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
+
 public class HW01 implements Dancers {
 
     public DancerTree FemaleTree;
     public DancerTree MaleTree;
-    public static Node root;
+
+
+    public void createTree(Node n) {
+        if (n.dancer.getGender().equals(Dancer.Gender.MALE)) {
+            this.MaleTree = new DancerTree(n);
+        } else {
+            this.FemaleTree = new DancerTree(n);
+        }
+    }
 
     @Override
     public DancingCouple findPartnerFor(Dancer candidate) throws IllegalArgumentException {
 
-        if (candidate.getGender().equals(FEMALE)){
+        if (candidate == null) throw new IllegalArgumentException();
+        if (candidate.getGender().equals(Dancer.Gender.MALE)) {
+            if (this.FemaleTree != null) {
+                // If no match, add to opposite tree
+                Node match = this.FemaleTree.match(candidate);
+                if (match != null) {
+                    // Remove node from tree
+                    //this.FemaleTree.delete(match);
+                    return new DancingCoupleImpl(match.dancer, candidate);
+                } else {
+                    if (this.MaleTree != null) {
+                        this.MaleTree.getRoot().insert(new Node(candidate));
+                    } else {
+                        this.createTree(new Node(candidate));
+                    }
+                }
+            } else {
+                if (this.MaleTree != null) {
+                    this.MaleTree.getRoot().insert(new Node(candidate));
+                } else {
+                    this.createTree(new Node(candidate));
+                }
+            }
+        } else {
+            if (this.MaleTree != null) {
+                // If no match, add to opposite tree
+                Node match = this.MaleTree.match(candidate);
+                if (match != null) {
+                    //this.MaleTree.delete(match);
+                    return new DancingCoupleImpl(candidate, match.dancer);
+                } else {
+                    if (this.FemaleTree != null) {
+                        this.FemaleTree.getRoot().insert(new Node(candidate));
+                    } else {
+                        this.createTree(new Node(candidate));
+                    }
+                }
+            } else {
+                if (this.FemaleTree != null) {
+                    this.FemaleTree.getRoot().insert(new Node(candidate));
+                } else {
+                    this.createTree(new Node(candidate));
+                }
+            }
+        }
+        return null;
+    }
+        /*if (candidate.getGender().equals(FEMALE)){
 
             //otsi sobivat partnerit MaleTree-s
             //MaleTree.findPartnerFor(candidate)???
             //kui ei leia, lisa FemaleTree-sse
-            new DancingCoupleImpl(candidate, findClosest(candidate));
-            FemaleTree.insert(candidate);
+            if (findClosest(candidate) == null) {
+                FemaleTree.insert(candidate);
+            }
+            return new DancingCoupleImpl(candidate, findClosest(candidate));
+
         }
 
         else
             //otsi sobivat partnerit FemaleTree-s
             //FemaleTree.findPartnerFor(candidate)????
             //kui ei leia, lisa MaleTree-sse
-            new DancingCoupleImpl(findClosest(candidate), candidate);
-            MaleTree.insert(candidate);
-        return null;
-    }
+            if (findClosest(candidate) == null) {
+                MaleTree.insert(candidate);
+            }
+            return new DancingCoupleImpl(findClosest(candidate), candidate);
+        }
 
   public Dancer findClosest(Dancer dancer) {
 
@@ -121,15 +182,32 @@ public class HW01 implements Dancers {
             return b;
         }
         return a;
-    }
+    }*/
 
-        @Override
+
+    @Override
     public List<Dancer> returnWaitingList() {
 
-            List<Dancer> resultList = new ArrayList<>();
-            if (FemaleTree != null) resultList.addAll(FemaleTree.getMembers());
-            if (MaleTree != null) resultList.addAll(MaleTree.getMembers());
+        List<Dancer> resultList = new ArrayList<>();
+        if (FemaleTree != null) resultList.addAll(FemaleTree.getMembers());
+        if (MaleTree != null) resultList.addAll(MaleTree.getMembers());
 
-            return resultList;
+        resultList.sort(new Comparator<Dancer>() {
+            @Override
+            public int compare(Dancer o1, Dancer o2) {
+                if (o1.getHeight() > o2.getHeight())
+                    return 1;
+                if (o1.getHeight() < o2.getHeight())
+                    return -1;
+                if (o1.getHeight() == o2.getHeight()) {
+                    if (o1.getGender() == FEMALE) return 0;
+                    else return 1;
+                }
+                return 0;
+            }
+
+        });
+
+        return resultList;
     }
 }

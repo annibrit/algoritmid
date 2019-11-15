@@ -9,7 +9,7 @@ import static ee.ttu.algoritmid.dancers.Dancer.Gender.MALE;
 public class HW01Testing {
 
     public static void main(String[] args) {
-        testFemaleTreeEndToEndPublic();
+        //testFemaleTreeEndToEndPublic();
         testMaleTreeEndToEndPublic();
     }
 
@@ -17,10 +17,11 @@ public class HW01Testing {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
-        requests.add(new DancerImplementation("M", MALE, 150));
+
+        requests.add(new DancerImplementation("Meelis", MALE, 150));
         responds.add(null);
 
-        requests.add(new DancerImplementation("M", MALE, 130));
+        /*requests.add(new DancerImplementation("M", MALE, 130));
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 135));
@@ -72,13 +73,13 @@ public class HW01Testing {
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 168));
-        responds.add(null);
+        responds.add(null);*/
 
 
-        requests.add(new DancerImplementation("F", FEMALE, 145));
+        requests.add(new DancerImplementation("Fatima", FEMALE, 150));
         responds.add(150);
 
-        requests.add(new DancerImplementation("F", FEMALE, 134));
+        /*requests.add(new DancerImplementation("F", FEMALE, 134));
         responds.add(140);
 
         requests.add(new DancerImplementation("F", FEMALE, 159));
@@ -115,6 +116,10 @@ public class HW01Testing {
 
         requests.add(new DancerImplementation("F", FEMALE, 175));
         responds.add(180);
+
+
+        requests.add(new DancerImplementation("F", FEMALE, 129));
+        responds.add(134);*/
 
 
         testTreeEndToEnd(requests, responds);
@@ -222,7 +227,6 @@ public class HW01Testing {
         requests.add(new DancerImplementation("M", MALE, 147));
         responds.add(140);
 
-
         testTreeEndToEnd(requests, responds);
     }
     private static void testTreeEndToEnd(List<Dancer> requests, List<Integer> responds) {
@@ -231,13 +235,15 @@ public class HW01Testing {
         for (int i = 0; i < requests.size(); i++) {
             testRequestResponse(solution, requests.get(i), responds.get(i));
         }
+
+        System.out.println(solution.returnWaitingList());
     }
 
 
     private static void testRequestResponse(HW01 solution, Dancer dancer, Integer expectedPartnerHeight) {
 
         DancingCouple couple = solution.findPartnerFor(dancer);
-
+        System.out.println(couple);
         if (couple == null) {
             if (expectedPartnerHeight != null) {
                 fail("Partner wasn't found, but should have", null, expectedPartnerHeight);
@@ -260,7 +266,7 @@ public class HW01Testing {
         System.err.println(errorMessage + ": found partner height=" + foundPartnerHeight + " expected partner height=" + expectedPartnerHeight);
     }
 
-    public static class DancerImplementation implements Dancer {
+   /* public static class DancerImplementation implements Dancer {
 
         public DancerImplementation(String name, Gender gender, int height) {
             // TODO
@@ -283,5 +289,5 @@ public class HW01Testing {
             // TODO
             return 0;
         }
-    }
+    }*/
 }

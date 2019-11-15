@@ -5,12 +5,24 @@ import java.util.List;
 
 public class DancerTree  {
 
-    public static Node root;
+    private static Node root;
     private List<Dancer> members = new ArrayList<>();
-    DancerTree left;
-    DancerTree right;
+
     public DancerTree() {
         this.root = null;
+    }
+
+    DancerTree(Node node) {
+        this.root = node;
+    }
+
+    Node getRoot() {
+        return root;
+    }
+
+
+    Node match(Dancer d) {
+        return this.root.match(new Node(d));
     }
 
     public void insert(Dancer dancer) {
@@ -41,6 +53,66 @@ public class DancerTree  {
                 }
             }
         }
+    }
+
+    void delete(Node tn) {
+        root = delete(root, tn);
+    }
+
+    private Node delete(Node n, Node tn) {
+        if (n == null) {
+            return null;
+        }
+
+        if (n == tn) {
+            // n is the node to be removed
+            if (n.getLeft() == null && n.getRight() == null) {
+                return null;
+            }
+            if (n.getLeft() == null) {
+                return n.getRight();
+            }
+            if (n.getRight() == null) {
+                return n.getLeft();
+            }
+
+            // if we get here, then n has 2 children
+            Node smallest = getLastOnTheLeft(n.getRight());
+            //n.setKey(smallest.getKey());
+            n.setRight(delete(n.getRight(), smallest));
+            return n;
+        }
+
+        else if (tn.dancer.getHeight() < n.dancer.getHeight()) {
+            n.setLeft( delete(n.getLeft(), tn) );
+            return n;
+        }
+
+        else {
+            n.setRight( delete(n.getRight(), tn) );
+            return n;
+        }
+    }
+
+    private Node getLastOnTheLeft(Node start) {
+        Node candidate = null;
+        Node parent = null;
+        Node node = start;
+
+        while (node != null) {
+            if ( node.getLeft() != null ) {
+                parent = node;
+                candidate = node.getLeft();
+            }
+
+            node = node.getLeft();
+        }
+
+        if (parent != null) {
+            parent.setLeft(null);
+        }
+
+        return candidate;
     }
 
 /*
