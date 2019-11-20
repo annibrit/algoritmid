@@ -3,8 +3,8 @@ package ee.ttu.algoritmid.dancers;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.MALE;
+import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 
 public class HW01Testing {
 
@@ -17,14 +17,13 @@ public class HW01Testing {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
-
         requests.add(new DancerImplementation("Meelis", MALE, 150));
         responds.add(null);
 
-        /*requests.add(new DancerImplementation("M", MALE, 130));
+        requests.add(new DancerImplementation("Mihkel", MALE, 130));
         responds.add(null);
 
-        requests.add(new DancerImplementation("M", MALE, 135));
+        requests.add(new DancerImplementation("Mart", MALE, 135));
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 149));
@@ -73,13 +72,12 @@ public class HW01Testing {
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 168));
-        responds.add(null);*/
-
+        responds.add(null);
 
         requests.add(new DancerImplementation("Fatima", FEMALE, 150));
         responds.add(150);
 
-        /*requests.add(new DancerImplementation("F", FEMALE, 134));
+        requests.add(new DancerImplementation("F", FEMALE, 134));
         responds.add(140);
 
         requests.add(new DancerImplementation("F", FEMALE, 159));
@@ -87,7 +85,7 @@ public class HW01Testing {
 
         requests.add(new DancerImplementation("F", FEMALE, 140));
         responds.add(148);
-
+/*
         requests.add(new DancerImplementation("F", FEMALE, 156));
         responds.add(163);
 
@@ -117,14 +115,12 @@ public class HW01Testing {
         requests.add(new DancerImplementation("F", FEMALE, 175));
         responds.add(180);
 
-
         requests.add(new DancerImplementation("F", FEMALE, 129));
-        responds.add(134);*/
-
-
+        responds.add(134);
+*/
         testTreeEndToEnd(requests, responds);
     }
-    public static void testFemaleTreeEndToEndPublic() {
+    /*public static void testFemaleTreeEndToEndPublic() {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
@@ -201,7 +197,6 @@ public class HW01Testing {
         requests.add(new DancerImplementation("M", MALE, 130));
         responds.add(123);
 
-
         requests.add(new DancerImplementation("F", FEMALE, 129));
         responds.add(null);
 
@@ -213,7 +208,6 @@ public class HW01Testing {
 
         requests.add(new DancerImplementation("F", FEMALE, 94));
         responds.add(null);
-
 
         requests.add(new DancerImplementation("M", MALE, 134));
         responds.add(129);
@@ -228,7 +222,7 @@ public class HW01Testing {
         responds.add(140);
 
         testTreeEndToEnd(requests, responds);
-    }
+    }*/
     private static void testTreeEndToEnd(List<Dancer> requests, List<Integer> responds) {
         HW01 solution = new HW01();
 

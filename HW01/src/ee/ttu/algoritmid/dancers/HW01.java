@@ -189,8 +189,14 @@ public class HW01 implements Dancers {
     public List<Dancer> returnWaitingList() {
 
         List<Dancer> resultList = new ArrayList<>();
-        if (FemaleTree != null) resultList.addAll(FemaleTree.getMembers());
-        if (MaleTree != null) resultList.addAll(MaleTree.getMembers());
+        List<Dancer> maleList = new ArrayList<>();
+        //List<Dancer> femaleList = new ArrayList<>();
+
+        //if (FemaleTree != null) femaleList.addAll(FemaleTree.getMembers());
+        if (MaleTree != null) maleList.addAll(MaleTree.getMembers());
+
+        resultList.addAll(maleList);
+        //resultList.addAll(femaleList);
 
         resultList.sort(new Comparator<Dancer>() {
             @Override
