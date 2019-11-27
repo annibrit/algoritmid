@@ -5,8 +5,8 @@ import java.util.List;
 
 public class DancerTree  {
 
-    private static Node root;
-    private List<Dancer> members = new ArrayList<>();
+    private Node root;
+    //private List<Dancer> members = new ArrayList<>();
 
     public DancerTree() {
         this.root = null;
@@ -22,7 +22,15 @@ public class DancerTree  {
 
 
     Node match(Dancer d) {
+
+        if (root == null) {
+            return null;
+        }
         return this.root.match(new Node(d));
+    }
+
+    Node closestValue(Node n, double target) {
+        return this.root.closestValue(n,target);
     }
 
     public void insert(Dancer dancer) {
@@ -59,38 +67,41 @@ public class DancerTree  {
         root = delete(root, tn);
     }
 
-    private Node delete(Node n, Node tn) {
-        if (n == null) {
+    private Node delete(Node rootnode, Node targetnode) {
+
+        // kindlasti mitterekursiivselt!!!
+
+        if (rootnode == null) {
             return null;
         }
 
-        if (n == tn) {
+        if (rootnode == targetnode) {
             // n is the node to be removed
-            if (n.getLeft() == null && n.getRight() == null) {
+            if (rootnode.getLeft() == null && rootnode.getRight() == null) {
                 return null;
             }
-            if (n.getLeft() == null) {
-                return n.getRight();
+            if (rootnode.getLeft() == null) {
+                return rootnode.getRight();
             }
-            if (n.getRight() == null) {
-                return n.getLeft();
+            if (rootnode.getRight() == null) {
+                return rootnode.getLeft();
             }
 
             // if we get here, then n has 2 children
-            Node smallest = getLastOnTheLeft(n.getRight());
+            Node smallest = getLastOnTheLeft(rootnode.getRight());
             //n.setKey(smallest.getKey());
-            n.setRight(delete(n.getRight(), smallest));
-            return n;
+            rootnode.setRight(delete(rootnode.getRight(), smallest));
+            return rootnode;
         }
 
-        else if (tn.dancer.getHeight() < n.dancer.getHeight()) {
-            n.setLeft( delete(n.getLeft(), tn) );
-            return n;
+        else if (targetnode.dancer.getHeight() < rootnode.dancer.getHeight()) {
+            rootnode.setLeft( delete(rootnode.getLeft(), targetnode) );
+            return rootnode;
         }
 
         else {
-            n.setRight( delete(n.getRight(), tn) );
-            return n;
+            rootnode.setRight( delete(rootnode.getRight(), targetnode) );
+            return rootnode;
         }
     }
 
@@ -243,18 +254,18 @@ public class DancerTree  {
     } */
 
     List<Dancer> getMembers() {
-        members = new ArrayList<>();
-        preOrderTraversal(root);
+        List<Dancer> members = new ArrayList<>();
+        preOrderTraversal(root, members);
         return members;
     }
 
-    private void preOrderTraversal(Node root){
+    private void preOrderTraversal(Node root, List<Dancer> members){
         if (root == null) {
             return;
         }
         members.add(root.dancer);
-        preOrderTraversal(root.left);
-        preOrderTraversal(root.right);
+        preOrderTraversal(root.left, members);
+        preOrderTraversal(root.right, members);
     }
 
     }

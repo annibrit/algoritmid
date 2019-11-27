@@ -260,6 +260,13 @@ public class HW01Testing {
         System.err.println(errorMessage + ": found partner height=" + foundPartnerHeight + " expected partner height=" + expectedPartnerHeight);
     }
 
+    //kustuta juurtipp
+    //pane sisse juur ja laps, proovi ikka juurtippu kustutada
+    //pane sisse veel lapsi jne
+
+    //testi nii et juurtipp on 75
+    // nii et vasak laps on parima pikkusega
+    // nii et parem laps on parima pikkusega
    /* public static class DancerImplementation implements Dancer {
 
         public DancerImplementation(String name, Gender gender, int height) {
