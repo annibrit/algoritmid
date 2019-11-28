@@ -45,7 +45,7 @@ public class HW01 implements Dancers {
                 Node match = this.MaleTree.match(candidate);
                 if (match != null) {
                     this.MaleTree.delete(match);
-                    return new DancingCoupleImpl(match.dancer, candidate);
+                    return new DancingCoupleImpl(candidate,match.dancer);
                 } else {
                     {
                         this.FemaleTree.insert(candidate);

@@ -6,6 +6,7 @@ import java.util.List;
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.MALE;
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 
+
 public class HW01Testing {
 
     public static void main(String[] args) {
@@ -23,7 +24,7 @@ public class HW01Testing {
         requests.add(new DancerImplementation("Mihkel", MALE, 130));
         responds.add(null);
 
-        requests.add(new DancerImplementation("Mart", MALE, 135));
+        /*requests.add(new DancerImplementation("Mart", MALE, 135));
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 149));
@@ -72,7 +73,7 @@ public class HW01Testing {
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 168));
-        responds.add(null);
+        responds.add(null);*/
 
         requests.add(new DancerImplementation("Fatima", FEMALE, 150));
         responds.add(150);
