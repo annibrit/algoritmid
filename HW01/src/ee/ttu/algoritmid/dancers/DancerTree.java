@@ -29,7 +29,7 @@ public class DancerTree  {
         return this.root.match(new Node(d));
     }
 
-    Node closestValue(Node n, double target) {
+    Node closestValue(Node n, int target) {
         return this.root.closestValue(n,target);
     }
 

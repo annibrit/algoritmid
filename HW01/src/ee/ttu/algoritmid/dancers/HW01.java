@@ -33,7 +33,7 @@ public class HW01 implements Dancers {
                 if (match != null) {
                     // Remove node from tree
                     this.FemaleTree.delete(match);
-                    return new DancingCoupleImpl(candidate, match.dancer);
+                    return new DancingCoupleImpl(match.dancer, candidate);
                 } else {
                         this.MaleTree.insert(candidate);
                 }

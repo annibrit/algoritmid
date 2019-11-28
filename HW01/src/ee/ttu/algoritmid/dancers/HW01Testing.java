@@ -10,7 +10,7 @@ import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 public class HW01Testing {
 
     public static void main(String[] args) {
-        //testFemaleTreeEndToEndPublic();
+        testFemaleTreeEndToEndPublic();
         testMaleTreeEndToEndPublic();
     }
 
@@ -24,7 +24,7 @@ public class HW01Testing {
         requests.add(new DancerImplementation("Mihkel", MALE, 130));
         responds.add(null);
 
-        /*requests.add(new DancerImplementation("Mart", MALE, 135));
+        requests.add(new DancerImplementation("Mart", MALE, 135));
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 149));
@@ -73,7 +73,7 @@ public class HW01Testing {
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 168));
-        responds.add(null);*/
+        responds.add(null);
 
         requests.add(new DancerImplementation("Fatima", FEMALE, 150));
         responds.add(150);
@@ -86,7 +86,7 @@ public class HW01Testing {
 
         requests.add(new DancerImplementation("F", FEMALE, 140));
         responds.add(148);
-/*
+
         requests.add(new DancerImplementation("F", FEMALE, 156));
         responds.add(163);
 
@@ -118,10 +118,10 @@ public class HW01Testing {
 
         requests.add(new DancerImplementation("F", FEMALE, 129));
         responds.add(134);
-*/
+
         testTreeEndToEnd(requests, responds);
     }
-    /*public static void testFemaleTreeEndToEndPublic() {
+        public static void testFemaleTreeEndToEndPublic() {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
@@ -223,7 +223,7 @@ public class HW01Testing {
         responds.add(140);
 
         testTreeEndToEnd(requests, responds);
-    }*/
+    }
     private static void testTreeEndToEnd(List<Dancer> requests, List<Integer> responds) {
         HW01 solution = new HW01();
 
@@ -238,7 +238,11 @@ public class HW01Testing {
     private static void testRequestResponse(HW01 solution, Dancer dancer, Integer expectedPartnerHeight) {
 
         DancingCouple couple = solution.findPartnerFor(dancer);
-        System.out.println(couple);
+
+        System.out.println("This is the printed out couple:"+couple);
+
+        System.out.println("This is the printed out waiting list:"+solution.returnWaitingList());
+
         if (couple == null) {
             if (expectedPartnerHeight != null) {
                 fail("Partner wasn't found, but should have", null, expectedPartnerHeight);

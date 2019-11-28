@@ -83,7 +83,7 @@ public class Node {
 
             Dancer man = node.dancer;
             Dancer woman = dancer;
-            double perfectH = man.getHeight() - 5;
+            int perfectH = man.getHeight() - 5;
 
 
         return closestValue(this, perfectH);
@@ -93,7 +93,7 @@ public class Node {
         else{
             Dancer woman = node.dancer;
             Dancer man = dancer;
-            double perfectH = woman.getHeight() + 5;
+            int perfectH = woman.getHeight() + 5;
 
         return closestValue(this, perfectH);
 
@@ -103,6 +103,10 @@ public class Node {
 
 
             /*
+
+            vana matchi meetod, mis ei leidnud kõige lähedasema väärtusega pikkust, vaid esimese mis sobis
+
+
         } if (node.dancer.getGender().equals(Dancer.Gender.FEMALE)) {
             Dancer woman = node.dancer;
             Dancer man = dancer;
@@ -121,36 +125,94 @@ public class Node {
         }
 
         return node;
-    }*/
+    }
 
 public Node closestValue(Node root, double target) {
     double min=Double.MAX_VALUE;
-    Node result = root;
+    Node result = null;
+    Node traversingNode = root;
 
-    while(root!=null){
-        if(target>root.dancer.getHeight()){
+    while(traversingNode!=null){
 
-            double diff = Math.abs(root.dancer.getHeight()-target);
+        if(target>traversingNode.dancer.getHeight()){
+
+            double diff = Math.abs(traversingNode.dancer.getHeight()-target);
             if(diff<min){
                 min = Math.min(min, diff);
-                result = root;
+                result = traversingNode;
             }
-            root = root.right;
-        }else if(target<root.dancer.getHeight()){
+            traversingNode = traversingNode.right;
 
-            double diff = Math.abs(root.dancer.getHeight()-target);
+        }else if(target<traversingNode.dancer.getHeight()){
+
+            double diff = Math.abs(traversingNode.dancer.getHeight()-target);
             if(diff<min){
                 min = Math.min(min, diff);
-                result = root;
+                result = traversingNode;
             }
-            root = root.left;
-        }else{
-            return root;
+            traversingNode = traversingNode.left;
+
         }
     }
 
     return result;
 }
+*/
+
+            double min = Double.MAX_VALUE;
+            Node foundNode;
+
+        public Node closestValue(Node root, int target) {
+
+            helper(root, target);
+            return foundNode;
+        }
+
+        public void helper(Node root, int target){
+
+            Node foundNode = null;
+            Node traversingNode = root;
+
+            if(traversingNode==null)
+                return;
+
+            if(Math.abs(traversingNode.dancer.getHeight() - target) < min){
+                min = Math.abs(traversingNode.dancer.getHeight()-target);
+                foundNode = traversingNode;
+            }
+
+            if(target < traversingNode.dancer.getHeight()){
+                helper(traversingNode.left, target);
+            }else{
+                helper(traversingNode.right, target);
+            }
+        }
+    /*
+
+    public Node findNode(Node root, int perfectH) {
+
+        int min=Integer.MAX_VALUE;
+        Node foundNode = null;
+        Node traversingNode = root;
+
+        if (traversingNode.dancer.getHeight()== perfectH) {
+            foundNode = traversingNode;
+            return foundNode;
+        }
+
+        if (perfectH < traversingNode.dancer.getHeight() && null != traversingNode.left) {
+
+            findNode(traversingNode.left, perfectH);
+        }
+
+        else if (perfectH > traversingNode.dancer.getHeight() && null != traversingNode.right) {
+
+            findNode(traversingNode, perfectH);
+        }
+
+        return foundNode;
+
+    }*/
 
     }
 
