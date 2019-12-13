@@ -18,7 +18,7 @@ public class HW01Testing {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
-        requests.add(new DancerImplementation("M", MALE, 150));
+        requests.add(new DancerImplementation("M",null, 150));
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 130));

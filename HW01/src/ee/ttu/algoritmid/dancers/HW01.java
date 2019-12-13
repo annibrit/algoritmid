@@ -18,7 +18,7 @@ public class HW01 implements Dancers {
 
         if (candidate == null) throw new IllegalArgumentException();
         if (candidate.getName().isEmpty()) throw new IllegalArgumentException();
-        if (candidate.getGender().equals(null)) throw new IllegalArgumentException();
+        if (candidate.getGender() == null) throw new IllegalArgumentException();
         if (candidate.getHeight() <= 0) throw new IllegalArgumentException();
 
         if (candidate.getGender().equals(MALE)) {
