@@ -102,7 +102,6 @@ public class HW01Testing {
         requests.add(new DancerImplementation("M", MALE, 134));
         responds.add(null);
 
-
         requests.add(new DancerImplementation("F", FEMALE, 164));
         responds.add(169);
 

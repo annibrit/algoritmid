@@ -17,6 +17,10 @@ public class HW01 implements Dancers {
     public DancingCouple findPartnerFor(Dancer candidate) throws IllegalArgumentException {
 
         if (candidate == null) throw new IllegalArgumentException();
+        if (candidate.getName().isEmpty()) throw new IllegalArgumentException();
+        if (candidate.getGender().equals(null)) throw new IllegalArgumentException();
+        if (candidate.getHeight() <= 0) throw new IllegalArgumentException();
+
         if (candidate.getGender().equals(MALE)) {
             {
                 // If no match, add to opposite tree
@@ -47,27 +51,6 @@ public class HW01 implements Dancers {
         }
         return null;
     }
-        /*
-    public static int Min_Diff(DancerTree t, int v){
-
-        Node current = root;
-        if(t==null){
-            return Integer.MAX_VALUE;
-        }
-
-        if (current.dancer.getHeight()<v){
-            return smallDiff(current.dancer.getHeight()-v, Min_Diff(t.right, v));
-        }
-        else return smallDiff(current.dancer.getHeight()-v, Min_Diff(t.left, v));
-    }
-
-    private static int smallDiff(int a, int b){
-        if(Math.abs(a)>Math.abs(b)){
-            return b;
-        }
-        return a;
-    }*/
-
 
     @Override
     public List<Dancer> returnWaitingList() {
@@ -85,7 +68,7 @@ public class HW01 implements Dancers {
                 if (o1.getHeight() < o2.getHeight())
                     return -1;
                 if (o1.getHeight() == o2.getHeight()) {
-                    if (o1.getGender() == MALE && o2.getGender() == FEMALE) return -1;
+                    if (o1.getGender() == MALE && o2.getGender() == FEMALE) return 1;
                     else return 0;
                 }
                 return 0;

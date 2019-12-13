@@ -111,8 +111,6 @@ public class Node {
     }
 
 }
-
-
             /*
 
             vana matchi meetod, mis ei leidnud kõige lähedasema väärtusega pikkust, vaid esimese mis sobis
