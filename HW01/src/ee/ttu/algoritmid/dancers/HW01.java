@@ -13,15 +13,6 @@ public class HW01 implements Dancers {
     public DancerTree MaleTree = new DancerTree();
 
 
-
-    /*public void createTree(Node n) {
-        if (n.dancer.getGender().equals(Dancer.Gender.MALE)) {
-            this.MaleTree = new DancerTree(n);
-        } else {
-            this.FemaleTree = new DancerTree(n);
-        }
-    }*/
-
     @Override
     public DancingCouple findPartnerFor(Dancer candidate) throws IllegalArgumentException {
 
@@ -32,7 +23,7 @@ public class HW01 implements Dancers {
                 Node match = this.FemaleTree.match(candidate);
                 if (match != null) {
                     // Remove node from tree
-                    this.FemaleTree.delete(match);
+                    this.FemaleTree.deleteNodeIteratively(FemaleTree.getRoot(),match);
                     return new DancingCoupleImpl(match.dancer, candidate);
                 } else {
                         this.MaleTree.insert(candidate);
@@ -44,7 +35,7 @@ public class HW01 implements Dancers {
                 // If no match, add to opposite tree
                 Node match = this.MaleTree.match(candidate);
                 if (match != null) {
-                    this.MaleTree.delete(match);
+                    this.MaleTree.deleteNodeIteratively(MaleTree.getRoot(),match);
                     return new DancingCoupleImpl(candidate,match.dancer);
                 } else {
                     {

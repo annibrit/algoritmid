@@ -10,7 +10,7 @@ import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 public class HW01Testing {
 
     public static void main(String[] args) {
-        testFemaleTreeEndToEndPublic();
+        //testFemaleTreeEndToEndPublic();
         testMaleTreeEndToEndPublic();
     }
 
@@ -18,13 +18,13 @@ public class HW01Testing {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
-        requests.add(new DancerImplementation("Meelis", MALE, 150));
+        requests.add(new DancerImplementation("M", MALE, 150));
         responds.add(null);
 
-        requests.add(new DancerImplementation("Mihkel", MALE, 130));
+        requests.add(new DancerImplementation("M", MALE, 130));
         responds.add(null);
 
-        requests.add(new DancerImplementation("Mart", MALE, 135));
+        requests.add(new DancerImplementation("M", MALE, 135));
         responds.add(null);
 
         requests.add(new DancerImplementation("M", MALE, 149));
@@ -75,21 +75,20 @@ public class HW01Testing {
         requests.add(new DancerImplementation("M", MALE, 168));
         responds.add(null);
 
-        requests.add(new DancerImplementation("Fatima", FEMALE, 150));
+        requests.add(new DancerImplementation("F", FEMALE, 145));
         responds.add(150);
 
-        requests.add(new DancerImplementation("F", FEMALE, 134));
+        requests.add(new DancerImplementation("F-tahaks 140 saada", FEMALE, 134));
         responds.add(140);
 
-        requests.add(new DancerImplementation("F", FEMALE, 159));
+        requests.add(new DancerImplementation("F-tahaks 165 saada", FEMALE, 159));
         responds.add(165);
 
-        requests.add(new DancerImplementation("F", FEMALE, 140));
+        requests.add(new DancerImplementation("F-tahaks 148 saada", FEMALE, 140));
         responds.add(148);
 
-        requests.add(new DancerImplementation("F", FEMALE, 156));
+        requests.add(new DancerImplementation("F-tahaks 163 saada", FEMALE, 156));
         responds.add(163);
-
 
         requests.add(new DancerImplementation("M", MALE, 169));
         responds.add(null);
@@ -116,10 +115,39 @@ public class HW01Testing {
         requests.add(new DancerImplementation("F", FEMALE, 175));
         responds.add(180);
 
+        testTreeEndToEnd(requests, responds);
+
+
+/*
+        requests.add(new DancerImplementation("M", MALE, 169));
+        responds.add(null);
+
+        requests.add(new DancerImplementation("M", MALE, 139));
+        responds.add(null);
+
+        requests.add(new DancerImplementation("M", MALE, 180));
+        responds.add(null);
+
+        requests.add(new DancerImplementation("M", MALE, 134));
+        responds.add(null);
+
+
+        requests.add(new DancerImplementation("F", FEMALE, 164));
+        responds.add(169);
+
+        requests.add(new DancerImplementation("F", FEMALE, 134));
+        responds.add(139);
+
         requests.add(new DancerImplementation("F", FEMALE, 129));
         responds.add(134);
 
-        testTreeEndToEnd(requests, responds);
+        requests.add(new DancerImplementation("F", FEMALE, 175));
+        responds.add(180);
+
+        requests.add(new DancerImplementation("F", FEMALE, 129));
+        responds.add(134); */
+
+        testTreeEndToEnd(requests, responds);/*
     }
         public static void testFemaleTreeEndToEndPublic() {
         List<Dancer> requests = new ArrayList<>();
@@ -222,7 +250,7 @@ public class HW01Testing {
         requests.add(new DancerImplementation("M", MALE, 147));
         responds.add(140);
 
-        testTreeEndToEnd(requests, responds);
+        testTreeEndToEnd(requests, responds);*/
     }
     private static void testTreeEndToEnd(List<Dancer> requests, List<Integer> responds) {
         HW01 solution = new HW01();
@@ -272,28 +300,5 @@ public class HW01Testing {
     //testi nii et juurtipp on 75
     // nii et vasak laps on parima pikkusega
     // nii et parem laps on parima pikkusega
-   /* public static class DancerImplementation implements Dancer {
 
-        public DancerImplementation(String name, Gender gender, int height) {
-            // TODO
-        }
-
-        @Override
-        public String getName() {
-            // TODO
-            return null;
-        }
-
-        @Override
-        public Gender getGender() {
-            // TODO
-            return null;
-        }
-
-        @Override
-        public int getHeight() {
-            // TODO
-            return 0;
-        }
-    }*/
 }

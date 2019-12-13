@@ -211,7 +211,8 @@ public Node closestValue(Node root, double target) {
        Node findClosestElement(Node node, int target, Node currentClosest) {
 
            //kui puu node on tühi
-           if (node == null) return currentClosest;
+           //if (node == null) return currentClosest;
+           while(node!=null) {
 
            if (node.dancer.getGender()== Dancer.Gender.FEMALE){
 
@@ -228,8 +229,8 @@ public Node closestValue(Node root, double target) {
                 if(
                         (currentClosest != null) &&
                         (traversingNodeDiff < currentDiff) &&
-                        (currentDiff >= 0)&&
-                        traversingNodeDiff >= 0) {
+                        (currentDiff <= 0)&&
+                        traversingNodeDiff <= 0) {
                     currentClosest = node;
                 }
 
@@ -272,8 +273,9 @@ public Node closestValue(Node root, double target) {
             else if(target < node.dancer.getHeight()) {
                 return findClosestElement(node.left, target, currentClosest);
             }
-        }
-           return null;
+        }}
+
+           return currentClosest;
        }
 
     /*

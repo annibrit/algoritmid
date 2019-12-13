@@ -29,8 +29,12 @@ public class DancerTree  {
         return this.root.match(new Node(d));
     }
 
-    Node closestValue(Node n, int target) {
+    /*Node closestValue(Node n, int target) {
         return this.root.closestValue(n,target);
+    }*/
+
+    Node findClosestElement(Node n, int perfectH, Node m ){
+        return this.root.findClosestElement(n,perfectH,m);
     }
 
     public void insert(Dancer dancer) {
@@ -66,6 +70,10 @@ public class DancerTree  {
     void delete(Node tn) {
         root = delete(root, tn);
     }
+
+
+
+
 
     private Node delete(Node rootnode, Node targetnode) {
 
@@ -189,23 +197,24 @@ public class DancerTree  {
         return true;
     }
 
-    public Node getSuccessor(Node deleleNode) {
-        Node successsor = null;
-        Node successsorParent = null;
-        Node current = deleleNode.right;
+    public Node getChild(Node deleteNode) {
+        Node child = null;
+        Node childParent = null;
+        Node current = deleteNode.right;
         while (current != null) {
-            successsorParent = successsor;
-            successsor = current;
+            childParent = child;
+            child = current;
             current = current.left;
         }
         //check if successor has the right child, it cannot have left child for sure
         // if it does have the right child, add it to the left of successorParent.
-//		successsorParent
-        if (successsor != deleleNode.right) {
-            successsorParent.left = successsor.right;
-        if (root != null) {            successsor.right = deleleNode.right;
+//		childParent
+        if (child != deleteNode.right) {
+            childParent.left = child.right;
+        if (root != null) {
+        child.right = deleteNode.right;
         }
-        return successsor;
+        return child;
     }
 
 
@@ -235,24 +244,6 @@ public class DancerTree  {
         b.display(root);
     } */
 
-/*
-        Node current = root;
-
-        while (current != null) {
-
-            if (current.data == femaleHeight + 5) {
-                return current.data;
-
-            } else if (current.data < femaleHeight + 5) {
-                current = current.left;
-
-            } else {
-                current = current.right;
-            }
-        }
-        return -1;
-    } */
-
     List<Dancer> getMembers() {
         List<Dancer> members = new ArrayList<>();
         preOrderTraversal(root, members);
@@ -268,8 +259,84 @@ public class DancerTree  {
         preOrderTraversal(root.right, members);
     }
 
+
+    public static void deleteNodeIteratively(Node root, Node targetnode) {
+        Node parent = null, current = root;
+        boolean hasLeft = false;
+
+        if (root == null)
+            return;
+
+        while (current != null) {
+            if (current == targetnode) {
+                break;
+            }
+
+            parent = current;
+            if (targetnode.dancer.getHeight() < current.dancer.getHeight()) {
+                hasLeft = true;
+                current = current.left;
+            } else {
+                hasLeft = false;
+                current = current.right;
+            }
+        }
+
+
+        if (parent == null) {
+            return;
+        }
+
+        if (hasLeft) {
+            parent.left = deleteNodeIteratively(current);
+        } else {
+            parent.right = deleteNodeIteratively(current);
+        }
+
+        //return root;
     }
 
-    //gotta traverse!!!
+    private static Node deleteNodeIteratively(Node node) {
+
+        if (node != null) {
+            if (node.left == null && node.right == null) {
+                return null;
+            }
+
+            if (node.left != null && node.right != null) {
+                Node inOrderSuccessor = deleteInOrderSuccessorDuplicate(node);
+                node.dancer = inOrderSuccessor.dancer;
+            } else if (node.left != null) {
+                node = node.left;
+            } else {
+                node = node.right;
+            }
+        }
+
+        return node;
+    }
+
+    private static Node deleteInOrderSuccessorDuplicate(Node node) {
+        Node parent = node;
+        node = node.right;
+        boolean rightChild = node.left == null;
+
+        while (node.left != null) {
+            parent = node;
+            node = node.left;
+        }
+
+        if (rightChild) {
+            parent.right = node.right;
+        } else {
+            parent.left = node.right;
+        }
+
+        node.right = null;
+        return node;
+    }
+
+
+}
 
 
