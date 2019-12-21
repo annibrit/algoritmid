@@ -212,33 +212,33 @@ public Node closestValue(Node root, double target) {
            //if (node == null) return currentClosest;
            while(node!=null) {
 
-           if (node.dancer.getGender()== Dancer.Gender.FEMALE){
+               if (node.dancer.getGender()== Dancer.Gender.FEMALE){
 
-               //otsides naispuust on ideaalne pikkus on target või lühem
-               if(node.dancer.getHeight() == target) return node;
+                   //otsides naispuust on ideaalne pikkus on target või lühem
+                   if(node.dancer.getHeight() == target) return node;
 
-               if (node.dancer.getHeight()< target) {
-                   if(currentClosest == null){
-                   currentClosest = node;
-               }
-               int currentDiff = currentClosest.dancer.getHeight() - target;
-               int traversingNodeDiff = node.dancer.getHeight() - target;
+                   if (node.dancer.getHeight()< target) {
+                       if(currentClosest == null){
+                       currentClosest = node;
+                   }
+                   int currentDiff = currentClosest.dancer.getHeight() - target;
+                   int traversingNodeDiff = node.dancer.getHeight() - target;
 
-                if(
-                        (currentClosest != null) &&
-                        (traversingNodeDiff < currentDiff) &&
-                        (currentDiff <= 0)&&
-                        traversingNodeDiff <= 0) {
-                    currentClosest = node;
-                }
+                    if(
+                            (currentClosest != null) &&
+                            (traversingNodeDiff < currentDiff) &&
+                            (currentDiff <= 0)&&
+                            traversingNodeDiff <= 0) {
+                                currentClosest = node;
+                    }
 
-               }
-                if(node.dancer.getHeight()>target) {
-                    return findClosestElement(node.left, target, currentClosest);
-                }
-                else { //target > node.data
-                    return findClosestElement(node.right, target, currentClosest);
-                }
+                   }
+                    if(node.dancer.getHeight()>target) {
+                        return findClosestElement(node.left, target, currentClosest);
+                    }
+                    else { //target > node.data
+                        return findClosestElement(node.right, target, currentClosest);
+                    }
         }
 
         if (node.dancer.getGender() == Dancer.Gender.MALE){
