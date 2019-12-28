@@ -102,7 +102,7 @@ public class DancerTree  {
             if (currentNode.getLeft() != null && currentNode.getRight() != null) {
                 Node successorNode = getMinimumNode(currentNode.getRight());
                 currentNode.dancer = successorNode.dancer;
-                deleteRecursively(currentNode.getRight(), successorNode);
+                currentNode.right = deleteRecursively(currentNode.getRight(), successorNode);
             } else if(currentNode.getLeft() != null) {
                 currentNode = currentNode.getLeft();
             } else if (currentNode.getRight() != null) {

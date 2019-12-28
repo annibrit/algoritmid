@@ -19,11 +19,14 @@ public class HW01Testing {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
-        requests.add(new DancerImplementation("M",MALE, 150));
+        requests.add(new DancerImplementation("HELP",FEMALE, 150));
         responds.add(null);
 
-        requests.add(new DancerImplementation("F", FEMALE, 145));
-        responds.add(150);
+        requests.add(new DancerImplementation("M",FEMALE, 130));
+        responds.add(null);
+
+        requests.add(new DancerImplementation("F", MALE, 135));
+        responds.add(130);
 
         testTreeEndToEnd(requests, responds);
     }
