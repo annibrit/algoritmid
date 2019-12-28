@@ -98,11 +98,7 @@ public class DancerTree  {
     private Node deleteRecursively(Node currentNode, Node target) {
         if (currentNode == null) {
             return null;
-        } else if (currentNode.dancer.getHeight() > target.dancer.getHeight()) {
-            currentNode.left = deleteRecursively(currentNode.getLeft(), target);
-        } else if(currentNode.dancer.getHeight() < target.dancer.getHeight()) {
-            currentNode.right = deleteRecursively(currentNode.getRight(), target);
-        } else {
+        } else if (currentNode == target){
             if (currentNode.getLeft() != null && currentNode.getRight() != null) {
                 Node successorNode = getMinimumNode(currentNode.getRight());
                 currentNode.dancer = successorNode.dancer;
@@ -114,6 +110,10 @@ public class DancerTree  {
             } else {
                 currentNode = null;
             }
+        } else if (currentNode.dancer.getHeight() > target.dancer.getHeight()) {
+            currentNode.left = deleteRecursively(currentNode.getLeft(), target);
+        } else if(currentNode.dancer.getHeight() <= target.dancer.getHeight()) {
+            currentNode.right = deleteRecursively(currentNode.getRight(), target);
         }
         return currentNode;
     }
