@@ -9,27 +9,33 @@ import static ee.ttu.algoritmid.dancers.Dancer.Gender.MALE;
 
 public class HW01 implements Dancers {
 
-    public DancerTree FemaleTree = new DancerTree();
-    public DancerTree MaleTree = new DancerTree();
+    public DancerTree FemaleTree;
+    public DancerTree MaleTree;
+
+    public HW01() {
+        this.FemaleTree = new DancerTree();
+        this.MaleTree = new DancerTree();
+    }
 
 
     @Override
     public DancingCouple findPartnerFor(Dancer candidate) throws IllegalArgumentException {
 
         if (candidate == null) throw new IllegalArgumentException();
-        if (candidate.getName().isEmpty()) throw new IllegalArgumentException();
         if (candidate.getName() == null) throw new IllegalArgumentException();
+        if (candidate.getName().isEmpty()) throw new IllegalArgumentException();
         if (candidate.getGender() == null) throw new IllegalArgumentException();
         if (candidate.getHeight() <= 0) throw new IllegalArgumentException();
 
         if (candidate.getGender().equals(MALE)) {
             {
                 // If no match, add to opposite tree
-                Node match = this.FemaleTree.match(candidate);
+                Node match = this.FemaleTree.invertMatch(candidate);
                 if (match != null) {
+                    Dancer matchedDancer = match.dancer;
                     // Remove node from tree
-                    this.FemaleTree.deleteNodeIteratively(FemaleTree.getRoot(),match);
-                    return new DancingCoupleImpl(match.dancer, candidate);
+                    this.FemaleTree.delete(match);
+                    return new DancingCoupleImpl(matchedDancer, candidate);
                 } else {
                         this.MaleTree.insert(candidate);
                 }
@@ -40,8 +46,9 @@ public class HW01 implements Dancers {
                 // If no match, add to opposite tree
                 Node match = this.MaleTree.match(candidate);
                 if (match != null) {
-                    this.MaleTree.deleteNodeIteratively(MaleTree.getRoot(),match);
-                    return new DancingCoupleImpl(candidate,match.dancer);
+                    Dancer matchedDancer = match.dancer;
+                    this.MaleTree.delete(match);
+                    return new DancingCoupleImpl(candidate, matchedDancer);
                 } else {
                     {
                         this.FemaleTree.insert(candidate);

@@ -10,7 +10,7 @@ import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 public class HW01Testing {
 
     public static void main(String[] args) {
-        //testFemaleTreeEndToEndPublic();
+        testFemaleTreeEndToEndPublic();
         testMaleTreeEndToEndPublic();
     }
 
@@ -114,10 +114,6 @@ public class HW01Testing {
         requests.add(new DancerImplementation("F", FEMALE, 175));
         responds.add(180);
 
-        testTreeEndToEnd(requests, responds);
-
-
-/*
         requests.add(new DancerImplementation("M", MALE, 169));
         responds.add(null);
 
@@ -143,10 +139,7 @@ public class HW01Testing {
         requests.add(new DancerImplementation("F", FEMALE, 175));
         responds.add(180);
 
-        requests.add(new DancerImplementation("F", FEMALE, 129));
-        responds.add(134); */
-
-        testTreeEndToEnd(requests, responds);/*
+        testTreeEndToEnd(requests, responds);
     }
         public static void testFemaleTreeEndToEndPublic() {
         List<Dancer> requests = new ArrayList<>();
@@ -249,7 +242,7 @@ public class HW01Testing {
         requests.add(new DancerImplementation("M", MALE, 147));
         responds.add(140);
 
-        testTreeEndToEnd(requests, responds);*/
+        testTreeEndToEnd(requests, responds);
     }
     private static void testTreeEndToEnd(List<Dancer> requests, List<Integer> responds) {
         HW01 solution = new HW01();
