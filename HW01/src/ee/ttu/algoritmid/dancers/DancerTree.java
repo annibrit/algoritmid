@@ -140,7 +140,7 @@ public class DancerTree  {
         preOrderTraversal(root.left, members);
         preOrderTraversal(root.right, members);
     }
-    
+
     public static void deleteNodeIteratively(Node root, Node targetnode) {
         Node parent = null, current = root;
         boolean hasLeft = false;
