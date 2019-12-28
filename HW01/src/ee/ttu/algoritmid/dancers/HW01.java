@@ -37,7 +37,7 @@ public class HW01 implements Dancers {
                     this.FemaleTree.delete(match);
                     return new DancingCoupleImpl(matchedDancer, candidate);
                 } else {
-                        this.MaleTree.insert(candidate);
+                    this.MaleTree.insert(candidate);
                 }
 
             }
@@ -50,9 +50,7 @@ public class HW01 implements Dancers {
                     this.MaleTree.delete(match);
                     return new DancingCoupleImpl(candidate, matchedDancer);
                 } else {
-                    {
-                        this.FemaleTree.insert(candidate);
-                    }
+                    this.FemaleTree.insert(candidate);
                 }
 
             }

@@ -92,7 +92,7 @@ public class DancerTree  {
     }
 
     void delete(Node tn) {
-        deleteRecursively(root, tn);
+        root = deleteRecursively(root, tn);
     }
 
     private Node deleteRecursively(Node currentNode, Node target) {

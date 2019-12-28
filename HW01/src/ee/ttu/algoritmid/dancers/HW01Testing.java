@@ -10,8 +10,22 @@ import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 public class HW01Testing {
 
     public static void main(String[] args) {
+        testMyStuff();
         testFemaleTreeEndToEndPublic();
         testMaleTreeEndToEndPublic();
+    }
+
+    public static void testMyStuff() {
+        List<Dancer> requests = new ArrayList<>();
+        List<Integer> responds = new ArrayList<>();
+
+        requests.add(new DancerImplementation("M",MALE, 150));
+        responds.add(null);
+
+        requests.add(new DancerImplementation("F", FEMALE, 145));
+        responds.add(150);
+
+        testTreeEndToEnd(requests, responds);
     }
 
     public static void testMaleTreeEndToEndPublic() {
