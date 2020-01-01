@@ -13,6 +13,7 @@ public class HW02 implements TrampolineCenter {
 
     private int[][] map;
 
+    // Test comment
     // Solve, should return the minimum number of moves to reach the southeast corner if the guy/girl is at cell (x, y)
     // (x, y) -> 1 + Min( { (x + m, y), (x - m, y) ... (x, y + m) } )
     private int solve(int x, int y) {
