@@ -2,9 +2,12 @@ package ee.ttu.algoritmid.trampoline;
 
 import javafx.util.Pair;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class HW02_BK implements TrampolineCenter {
+public class HW02_OLD implements TrampolineCenter {
     //                        D  U   R  L
     private final int dx[] = {1,  0};
     private final int dy[] = {0,  1};
@@ -25,18 +28,20 @@ public class HW02_BK implements TrampolineCenter {
         }
         int minimumNumberOfMoves = Integer.MAX_VALUE - 5; // infinity
         // up (x - map[x][y], y), down (x + map[x][y], y), right (x, y + map[x][y]), left (x, y - map[x][y])
-        // (x + m, y) -> (x +`m + 0, y) (x + m - 1, y) (x + m + 1, y)
         Pair<Integer, Integer> nextState = null;
         for (int k = 0; k < 2; k++) {
+            for (int delta = -1; delta <= 1; delta++) {    // (x + m, y) -> (x +`m + 0, y) (x + m - 1, y) (x + m + 1, y)
                 // k = 0, DOWN JUMP
                 // k = 1, UP JUMP
                 // k = 2, RIGHT JUMP
                 // k = 3, LEFT JUMP
 
-                int newX = x + dx[k] * map[x][y]; // k = 0, x + (0) * map[x][y] => x
-                int newY = y + dy[k] * map[x][y]; // k = 0, y + (1) * map[x][y] => y + map[x][y]
+                int newX = x + dx[k] * (map[x][y] + delta); // k = 0, x + (0) * map[x][y] => x
+                int newY = y + dy[k] * (map[x][y] + delta); // k = 0, y + (1) * map[x][y] => y + map[x][y]
+
 
                 if (newX < 0 || newX >= map.length || newY < 0 || newY >= map[x].length) continue;
+                if (newX == x && newY == y) continue;
 
                 int nextStateMoves = 1 + solve(newX, newY);
 
@@ -44,6 +49,7 @@ public class HW02_BK implements TrampolineCenter {
                     minimumNumberOfMoves = nextStateMoves;
                     nextState = new Pair<>(newX, newY);
                 }
+            }
         }
         track.put(new Pair(x, y), nextState);
         dp.put(new Pair(x, y), minimumNumberOfMoves);
